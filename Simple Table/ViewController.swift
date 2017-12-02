@@ -35,7 +35,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     var cell = tableView.dequeueReusableCell(withIdentifier: simpleTableIdentifier)
     if cell == nil {
-      cell = UITableViewCell(style: .subtitle, reuseIdentifier: simpleTableIdentifier)
+      cell = UITableViewCell(style: .default, reuseIdentifier: simpleTableIdentifier)
     }
     let image = UIImage(named: "star")
     cell?.imageView?.image = image
@@ -46,13 +46,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     if indexPath.row < 7 {
       cell?.detailTextLabel?.text = "Mr Disney"
     } else {
-      cell?.detailTextLabel?.text = "Mr Tolkinen"
+      cell?.detailTextLabel?.text = "Mr Tolkien"
     }
-    
+    cell?.textLabel?.font = UIFont.boldSystemFont(ofSize: 32)
     return cell!
   }
 
   // MARK: TableView Delegate
+  func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
+    return indexPath.row % 4
+  }
+  func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+    return indexPath.row == 0 ? nil : indexPath
+  }
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let rowValue = dwarves[indexPath.row]
+    let message = "You selected \(rowValue)"
+    
+    let controller = UIAlertController(title: "Row Selected", message: message, preferredStyle: .alert)
+    let action = UIAlertAction(title: "Yes I Did", style: .default, handler: nil)
+    controller.addAction(action)
+    present(controller, animated: true, completion: nil)
+  }
 
 }
 
