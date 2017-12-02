@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -20,6 +20,16 @@ class ViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
 
+  // MARK: TableView Data Source
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    <#code#>
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    <#code#>
+  }
+
+  // MARK: TableView Delegate
 
 }
 
